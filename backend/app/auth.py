@@ -29,6 +29,6 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if user and user.check_password(password):
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=str(user.id)) # user.id를 문자열로 변환
         return jsonify(access_token=access_token, user={"id": user.id, "email": user.email}), 200
     return jsonify({"msg": "Bad email or password"}), 401
