@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+psycopg2-binary # For PostgreSQL
+python-dotenv
+Flask-JWT-Extended
+Flask-CORS
+requests
+gunicorn # For Render deployment
