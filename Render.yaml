@@ -19,8 +19,6 @@ services:
       - key: PYTHON_VERSION
         value: 3.10.4 # Specify your Python version (Note: logs showed 3.11)
       - key: FLASK_APP
-        value: backend/run.py
-      - key: FLASK_APP
         value: backend.run # OPTIONALLY UPDATED for consistency
       - key: FLASK_ENV # Set to production for deployed app
         value: production
