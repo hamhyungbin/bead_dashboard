@@ -2,10 +2,10 @@ services:
   - type: web # Backend (Flask)
     name: my-dashboard-backend
     env: python
+    rootDir: ./backend
     plan: free # Or your desired plan
-    buildCommand: "./backend/build_backend.sh" # Or just pip install if no complex build
+    buildCommand: "./build_backend.sh" # Or just pip install if no complex build
     startCommand: "gunicorn run:app"
-    healthCheckPath: "/" # Add a basic health check route in Flask if needed
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -32,12 +32,13 @@ services:
     name: my-dashboard-frontend
     plan: free
     env: node # or static if using static site type
-    region: oregon # Or your preferred region
-    buildCommand: "cd frontend && npm install && npm run build"
+    rootDir: ./frontend
+    region: oregon
+    buildCommand: npm install && npm run build
     # If using Static Site type on Render:
     # staticPublishPath: "./frontend/dist"
     # If using Web Service type for frontend (e.g. for SSR or complex routing):
-    startCommand: "cd frontend && npx serve -s dist -p $PORT" # Example using 'serve'
+    startCommand: npx serve -s dist -p $PORT # Example using 'serve'
     envVars:
       - key: VITE_API_URL # Ensure your React app uses this for backend URL
         value: https://${MY_DASHBOARD_BACKEND_RENDER_EXTERNAL_URL} # Render provides this automatically
