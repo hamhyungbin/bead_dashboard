@@ -4,7 +4,7 @@ services:
     env: python
     plan: free # Or your desired plan
     buildCommand: "./build_backend.sh" # Or just pip install if no complex build
-    startCommand: "gunicorn run:app"
+    startCommand: "gunicorn backend.run:app" # MODIFIED LINE
     healthCheckPath: "/" # Add a basic health check route in Flask if needed
     envVars:
       - key: DATABASE_URL
@@ -18,9 +18,9 @@ services:
       - key: OPENWEATHER_API_KEY
         sync: false # Set this manually in Render's UI
       - key: PYTHON_VERSION
-        value: 3.10.4 # Specify your Python version
+        value: 3.10.4 # Specify your Python version (Note: logs showed 3.11)
       - key: FLASK_APP
-        value: run.py
+        value: backend.run # OPTIONALLY UPDATED for consistency
       - key: FLASK_ENV # Set to production for deployed app
         value: production
     autoDeploy: true
