@@ -3,7 +3,7 @@ services:
     name: my-dashboard-backend
     env: python
     plan: free # Or your desired plan
-    buildCommand: "./build_backend.sh" # Or just pip install if no complex build
+    buildCommand: "./backend/build_backend.sh" # Or just pip install if no complex build
     startCommand: "gunicorn run:app"
     healthCheckPath: "/" # Add a basic health check route in Flask if needed
     envVars:
