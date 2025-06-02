@@ -2,11 +2,9 @@ services:
   - type: web # Backend (Flask)
     name: my-dashboard-backend
     env: python
-    plan: free
-    rootDirectory: backend # <<< 이 줄을 추가하거나 확인하세요.
-    buildCommand: "./build_backend.sh"
+    plan: free # Or your desired plan
+    buildCommand: "./build_backend.sh" # Or just pip install if no complex build
     startCommand: "gunicorn run:app"
-    # ... (나머지 백엔드 서비스 설정)
     healthCheckPath: "/" # Add a basic health check route in Flask if needed
     envVars:
       - key: DATABASE_URL
